@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
+/*
+Learn how to take mirror image
 
+*/
 void printTarget(int N)
 {
     int sz = 2*N - 1;
