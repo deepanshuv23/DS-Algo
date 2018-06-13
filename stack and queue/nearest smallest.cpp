@@ -9,10 +9,14 @@ vector<int> Solution::prevSmaller(vector<int> &A) {
     {
         if(A[i]>min)
         {
-        for(int j=p;j<i;j++)
+        for(int j=i-1;j>=p;j--)
         {
             if(A[j]<A[i])
+            {
                 ans[i]=A[j];
+                break;
+            }
+            
         }
         }
         else
@@ -25,6 +29,15 @@ vector<int> Solution::prevSmaller(vector<int> &A) {
     return ans;
 }
 
+/*
+
+1) Create a new empty stack st
+
+2) Iterate over array `A`,
+   where `i` goes from `0` to `size(A) - 1`.
+    a) We are looking for value just smaller than `A[i]`. So keep popping from `st` till elements in `st.top() >= A[i]` or st becomes empty.
+    b) If `st` is non empty, then the top element is our previous element. Else the previous element does not exist. 
+    c) push `A[i]` onto st*/
 // another method mentioned in editorial using stack
 
 vector<int> Solution::prevSmaller(vector<int> &A) {
