@@ -1,25 +1,30 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 ListNode* Solution::deleteDuplicates(ListNode* A) {
-
-    ListNode *tmp=A;
-    while(A!=NULL)
-    {
-        while(A==A->next)
-        {
-            A=A->next;
-        }
-        tmp->next=A;
-        tmp=tmp->next;
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    
+    if(A == NULL){
+        return A;
     }
-
-    return tmp;
     
+    ListNode* curr;
+    ListNode* temp;
     
+    curr = A;
+    
+    while(curr->next != NULL){
+        temp = curr->next;
+        while(curr->val == temp->val){
+            if(temp->next == NULL){
+                curr->next = NULL;
+                return A;
+            }
+            temp = temp->next;
+        }
+        curr->next = temp;
+        curr = temp;
+    }
+    
+    return A;
 }
