@@ -13,7 +13,7 @@ int Solution::colorful(int A) {
     long long int value = 1;
     
     while(A){
-        product = product * (A%10);
+        //product = product * (A%10);
         vec.insert(vec.begin(), A%10);
         A = A/10;
     }
