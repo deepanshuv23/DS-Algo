@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-// there are some errors here logical
+// its working fine now
 int bitonic_LIS(int arr[],int n)        // Longest increasing subsequence
 {
     int L[n]={1},L_rev[n]={1},arr_rev[n]={0};
