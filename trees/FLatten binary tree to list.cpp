@@ -7,42 +7,45 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
-void make(TreeNode *root,TreeNode *A,TreeNode *sol)
-{
-    if(A==NULL)
-    {
-        return;
-    }
-    
-    if(root==NULL)
-    {
-        TreeNode *tmp = new TreeNode(A->val);
-        root=tmp;
-        sol=root;
-    }
-    else
-    {
-        
-        TreeNode *tmp = new TreeNode(A->val);
-        root->right=tmp;
-        root=root->right;
- 
-    }
-
-    make(root,A->left,sol);
-    make(root,A->right,sol);
-}
 TreeNode* Solution::flatten(TreeNode* A) {
 
-    TreeNode *root=NULL;
-    TreeNode *sol=NULL;
+    if(A == NULL){
+        return A;
+    }
 
-    //root;
+    stack<TreeNode*> st;
+    
+    TreeNode* curr = A, *last = NULL;
 
-    vector<int> ans;
-
-    make(root,A,sol);
-    return sol;
+    do{
+        if(curr != NULL){
+            st.push(curr);
+            if(curr == A){
+                last = curr;
+            }
+            else{
+                last->left = curr;
+                last = last->left;
+            }
+            curr = curr->left;
+        }
+        else{
+            curr = st.top();
+            curr = curr->right;
+            st.pop();
+        }
+    }while(!st.empty() || curr != NULL);
+    
+    curr = A;
+    
+    while(curr != NULL){
+        TreeNode* temp = curr->left;
+        curr->left = NULL;
+        curr->right = temp;
+        curr = curr->right;
+    }
+    
+    return A;
+    
     
 }
